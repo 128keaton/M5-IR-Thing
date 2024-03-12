@@ -127,12 +127,14 @@ void volUp() {
   uint8_t command = 18;
   drawSendSIRC5Command(command, "Vol Up");
   mqttClient.publish("ir/receiver/state/mute", "false", 0, false);
+  mqttClient.publish("ir/receiver/state/on", "true", 0, false);
 }
 
 void volDown() {
   uint8_t command = 19;
   drawSendSIRC5Command(command, "Vol Down");
   mqttClient.publish("ir/receiver/state/mute", "false", 0, false);
+  mqttClient.publish("ir/receiver/state/on", "true", 0, false);
 }
 
 
@@ -140,6 +142,7 @@ void mute() {
   uint8_t command = 20;
   drawSendSIRC5Command(command, "Mute");
   mqttClient.publish("ir/receiver/state/mute", "true", 0, false);
+  mqttClient.publish("ir/receiver/state/on", "true", 0, false);
 }
 
 void sourceMediabox() {
@@ -147,6 +150,7 @@ void sourceMediabox() {
   uint16_t sirc20Address = 0x0D10;
   drawSendSIRC20Command(command, sirc20Address, "Media Box");
   mqttClient.publish("ir/receiver/state/source", "mediaBox", 0, false);
+  mqttClient.publish("ir/receiver/state/on", "true", 0, false);
 }
 
 void sourcePC() {
@@ -154,12 +158,14 @@ void sourcePC() {
   uint16_t sirc20Address = 0x0510;
   drawSendSIRC20Command(command, sirc20Address, "PC");
   mqttClient.publish("ir/receiver/state/source", "PC", 0, false);
+  mqttClient.publish("ir/receiver/state/on", "true", 0, false);
 }
 
 void sourceCD() {
   uint8_t command = 37;
   drawSendSIRC5Command(command, "CD");
   mqttClient.publish("ir/receiver/state/source", "CD", 0, false);
+  mqttClient.publish("ir/receiver/state/on", "true", 0, false);
 }
 
 void onConnectionEstablishedCallback(esp_mqtt_client_handle_t client) {
